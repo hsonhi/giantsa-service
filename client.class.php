@@ -119,7 +119,7 @@ class Client
 				break;
 		}
 	    $stmt = $this->db->prepare($sql);
-	    $stmt->bindValue(":id", $route[2]);
+	    $stmt->bindValue(":id", isset($route[2]) ? $route[2] : null);
 	    $stmt->execute();
 
 	    if($stmt->rowCount() > 0)

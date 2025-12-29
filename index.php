@@ -1,4 +1,9 @@
 <?php
+
+    header("Access-Control-Allow-Origin: *");
+    header('Access-Control-Allow-Methods: GET, POST, DELETE');
+    header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
 	$route 	= $_SERVER['REQUEST_URI'];
 	$method = $_SERVER['REQUEST_METHOD'];
 	$route = substr($route, 1);
@@ -12,7 +17,7 @@
 	switch (true) {
 		case ($method == "GET"):
 
-			$client = new Client($_REQUEST['id']);
+			$client = new Client(isset($_REQUEST['id']) ? $_REQUEST['id'] : null);
 			$arr_json = $client->verifyMethod($method,$route,null);
 			break;
 		case ($method == "POST" || $method == "DELETE"):
